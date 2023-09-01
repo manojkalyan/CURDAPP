@@ -1,14 +1,91 @@
-<h1>Edit Record</h1>
-<%= record._id %>
-<form action="/records/update/<%= record._id %>"method="POST">
-    <label>Name:</label>
-    <input type="text" name="name" value="<%= record.name %>"><br>
-    <label>Description:</label>
-    <textarea name="description"><%= record.description %></textarea><br>
-    <label>Category:</label>
-    <input type="text" name="category" value="<%= record.category %>"><br>
-    <label>Active:</label>
-    <input type="checkbox" name="isActive" <% if (record.isActive) { %>checked<% } %>><br>
-    <input type="submit"value="update">
-</form>
-<a href="/records/recordList">Back to Records</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Record</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+
+        input[type="text"],
+        textarea,
+        input[type="checkbox"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media screen and (max-width: 600px) {
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Edit Record</h1>
+        <form action="/records/update/<%= record._id %>" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" value="<%= record.name %>">
+            <label for="description">Description:</label>
+            <textarea name="description" id="description"><%= record.description %></textarea>
+            <label for="category">Category:</label>
+            <input type="text" name="category" id="category" value="<%= record.category %>">
+            <label for="isActive">Active:</label>
+            <input type="checkbox" name="isActive" id="isActive" <% if (record.isActive) { %>checked<% } %>>
+            <input class="button" type="submit" value="Update">
+        </form>
+        <a class="button" href="/records/recordList">Back to Records</a>
+    </div>
+</body>
+</html>

@@ -40,12 +40,24 @@
         select,
         input[type="text"],
         button[type="submit"] {
-            width: 100%;
-            padding: 8px;
+            width: 25%;
+            padding: 6px;
             margin-bottom: 10px;
             border: 1px solid #ccc;
             border-radius: 3px;
-            font-size: 14px;
+            font-size: 12px;
+        }
+
+        button[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            width: 18%;
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0056b3;
         }
 
         ul {
@@ -61,11 +73,24 @@
             margin-right: 10px;
         }
 
+        /* Separate container for record details */
+        .record-details {
+            border: 1px solid #ccc;
+            padding: 10px;
+            border-radius: 3px;
+        }
+
         /* Media Queries for Responsive Design */
         @media screen and (max-width: 600px) {
             .container {
                 max-width: 100%;
                 padding: 10px;
+            }
+
+            select,
+            input[type="text"],
+            button[type="submit"] {
+                width: 100%;
             }
         }
     </style>
@@ -73,11 +98,10 @@
 <body>
     <div class="header">
         <a class="button" href="/user/signout">Sign Out</a>
-        <a class="button" href="/records/create">Create</a>
-        <a class="button" href="/records/recordList">List of Records</a>
+        <a class="button" href="/records/getcreate">Create New Record</a>
     </div>
     <div class="container">
-        <h1>Records</h1>
+        <h1>List Of Records</h1>
         <form action="/records/recordList" method="GET">
             <label for="status">Filter by Status:</label>
             <select name="status" id="status">
@@ -89,19 +113,22 @@
             <input type="text" name="name" id="name" placeholder="Search by name">
             <button class="button" type="submit">Apply Filters</button>
         </form>
-        <form action="/records/delete" method="POST">
-            <ul>
-                <% records.forEach(record => { %>
-                    <li>
-                        <input type="checkbox" name="recordIds" value="<%= record._id %>">
-                        <a href="/records/details/<%= record._id %>"><%= record.name %></a>
-                        <p><%= record.description %></p>
-                    </li>
-                <% }) %>
-            </ul>
-            <button class="button" type="submit" formaction="/records/delete">Delete Selected</button>
-        </form>
-        <a href="/records/getcreate">Create New Record</a>
+        <!-- Separate container for record details -->
+        <div class="record-details">
+            <form action="/records/delete" method="POST">
+                <ul>
+                    <% records.forEach(record => { %>
+                        <li>
+                            <input type="checkbox" name="recordIds" value="<%= record._id %>">
+                            <div class="record-info">
+                                <a href="/records/details/<%= record._id %>"><%= record.name %></a>
+                            </div>
+                        </li>
+                    <% }) %>
+                </ul>
+                <button class="button" type="submit" formaction="/records/delete">Delete Selected</button>
+            </form>
+        </div>
     </div>
 </body>
 </html>
