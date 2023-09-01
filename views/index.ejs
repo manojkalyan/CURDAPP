@@ -19,6 +19,13 @@
             text-align: right;
         }
 
+        /* Style for header links */
+        .header a {
+            color: #fff;
+            text-decoration: none; /* Remove underline from links */
+            padding: 10px; /* Add padding to links */
+        }
+
         .container {
             max-width: 800px;
             margin: 20px auto;
@@ -97,8 +104,8 @@
 </head>
 <body>
     <div class="header">
-        <a class="button" href="/user/signout">Sign Out</a>
-        <a class="button" href="/records/getcreate">Create New Record</a>
+        <a href="/user/signout">Sign Out</a>
+        <a href="/records/getcreate">Create New Record</a>
     </div>
     <div class="container">
         <h1>List Of Records</h1>

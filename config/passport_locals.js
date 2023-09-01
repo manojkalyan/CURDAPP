@@ -18,7 +18,7 @@ passport.use(
         // Check if the user exists and if the password matches
            if (!user || user.password !== password) {
           // If the user is not found or the password is incorrect, return an error
-        //   req.flash('error', 'Invalid email or password');
+          req.flash('error', 'Invalid email or password');
           console.log('Invalid password');
           return done(null, false);
         }

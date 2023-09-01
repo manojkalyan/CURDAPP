@@ -58,10 +58,14 @@ exports.record_create_post = async (req, res) => {
         const isActiveBool = isActive === 'on';
 
        const records= await Record.create({ name, description, category, isActive: isActiveBool });
+           req.flash('success', 'Success');
+
         return res.redirect("/records/recordList")
         
     } catch (err) {
         console.error(err);
+            req.flash('error', 'Check email or password');
+
         return res.redirect("back")
     }
 };
@@ -72,9 +76,12 @@ exports.record_update_get = async (req, res) => {
 
     try {
         const record = await Record.findById(recordId);
+
         res.render('edit', { record });
     } catch (err) {
         console.error(err);
+            req.flash('error', 'Check email or password');
+
         res.redirect('back');
     }
 };
@@ -92,10 +99,14 @@ exports.record_update_post = async (req, res) => {
             { name, description, category, isActive: isActiveBool },
             { new: true } // To get the updated record
         );
+            req.flash('success', 'Successfully');
+
 
         res.redirect('/records/recordList');
     } catch (err) {
         console.error(err);
+            req.flash('error', 'Check email or password');
+
 
         res.redirect('back');
     }
@@ -106,11 +117,13 @@ exports.record_delete = async (req, res) => {
 
     try {
         await Record.findByIdAndDelete(recordId);
+            req.flash('success', 'Successfully deleted');
+
         res.redirect('/records/recordList');
 
     } catch (err) {
         console.error(err);
-        console.log('error in delete')
+    req.flash('error', 'Check email or password');
         res.redirect('/records/recordList');
     }
 };
@@ -121,11 +134,12 @@ exports.record_delete_bulk = async (req, res) => {
 
     try {
         await Record.deleteMany({ _id: { $in: recordIdsToDelete } });
+            req.flash('success', 'Successfully deleted');
+
         res.redirect('back');
-        console.log('Bulk delete successful');
     } catch (err) {
         console.error(err);
-        console.log('Error in bulk delete');
+    req.flash('error', 'Check email or password');
         res.redirect('back');
     }
 };

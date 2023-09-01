@@ -20,15 +20,17 @@ module.exports.Create = async function (req, res) {
 
     if (!existingUser) {
       const newUser = await User.create(req.body);
-    //   req.flash('success', 'createdsuccess');
+      req.flash('success', 'createdsuccess');
 
       return res.redirect('/user/getLoginForm');
     } else {
-    //   req.flash('error', 'Check email or password');
+      req.flash('error', 'Check email or password');
       return res.redirect('back');
     }
   } catch (err) {
     console.log('Error in finding or creating user:', err);
+        req.flash('error', 'Check email or password');
+
     return res.status(500).send('Internal Server Error');
   }
 };
@@ -41,7 +43,7 @@ exports.login_get = (req, res) => {
 };
 
 module.exports.create_session = async function (req, res) {
-//   req.flash('success', 'Login success');
+  req.flash('success', 'Login success');
 return res.redirect('/records/getcreate')
 };
 module.exports.destroysession = function (req, res, next) {
@@ -49,7 +51,7 @@ module.exports.destroysession = function (req, res, next) {
     if (err) {
       return next(err);
     }
-    // req.flash('success', 'Successfully signout');
+    req.flash('success', 'Successfully signout');
     console.log("signout")
     res.redirect('/user/getRegistrationForm');
   });
