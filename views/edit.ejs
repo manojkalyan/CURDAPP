@@ -1,0 +1,14 @@
+<h1>Edit Record</h1>
+<%= record._id %>
+<form action="/records/update/<%= record._id %>"method="POST">
+    <label>Name:</label>
+    <input type="text" name="name" value="<%= record.name %>"><br>
+    <label>Description:</label>
+    <textarea name="description"><%= record.description %></textarea><br>
+    <label>Category:</label>
+    <input type="text" name="category" value="<%= record.category %>"><br>
+    <label>Active:</label>
+    <input type="checkbox" name="isActive" <% if (record.isActive) { %>checked<% } %>><br>
+    <input type="submit"value="update">
+</form>
+<a href="/records/recordList">Back to Records</a>

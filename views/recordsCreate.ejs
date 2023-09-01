@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Record</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            text-align: right;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 80px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        /* Style for checkbox wrapper */
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="checkbox"] {
+            margin: 0 5px 0 0; /* Adjust margin as needed */
+        }
+
+        .button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 3px;
+            font-size: 14px;
+            cursor: pointer;
+            display: inline-block;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        a {
+            text-align: center;
+            display: block;
+            margin-top: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        /* Media Queries for Responsive Design */
+        @media screen and (max-width: 600px) {
+            .container {
+                max-width: 100%;
+                padding: 10px;
+            }
+
+            input[type="text"],
+            textarea,
+            select {
+                font-size: 12px;
+            }
+
+            .button {
+                font-size: 12px;
+                padding: 6px 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a class="button" href="/user/signout">Sign Out</a>
+        <a class="button" href="/records/create">Create</a>
+        <a class="button" href="/records/recordList">List of Records</a>
+    </div>
+    <div class="container">
+        <h1>Create Record</h1>
+        <form action="/records/create" method="POST">
+            <label for="name">Name:</label>
+            <input type="text" name="name" id="name" required>
+            <label for="description">Description:</label>
+            <textarea name="description" id="description" required></textarea>
+            <label for="category">Category:</label>
+            <select name="category" id="category">
+                <% categories.forEach(category => { %>
+                    <option value="<%= category.name %>"><%= category.name %></option>
+                <% }) %>
+            </select>
+            <div class="checkbox-wrapper">
+                <label for="isActive">Active:</label>
+                <input type="checkbox" name="isActive" id="isActive" checked>
+            </div>
+            <button class="button" type="submit">Create</button>
+        </form>
+    </div>
+</body>
+</html>

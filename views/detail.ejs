@@ -1,0 +1,10 @@
+<h1>Record Detail</h1>
+<h2>Name: <%= record.name %></h2>
+<p>Description: <%= record.description %></p>
+<p>Category: <%= record.category %></p>
+<p>Active: <%= record.isActive ? 'Yes' : 'No' %></p>
+<a href="/records/recordList">Back to Records</a>
+<a href="/records/getrecordbyId/<%= record._id %>">update</a>
+<a href="/records/delete/<%= record._id %>">delete</a>
+
+   
