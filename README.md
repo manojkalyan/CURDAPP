@@ -1,4 +1,3 @@
-![image](https://github.com/manojkalyan/CURDAPP/assets/70328306/71a0e877-0a1c-4d76-9ae3-13bf8b08e7f2)
 # CRUD Application
 
 
@@ -66,6 +65,8 @@ This is a simple CRUD (Create, Read, Update, Delete) application built using Nod
 ![Screenshot (74)](https://github.com/manojkalyan/CURDAPP/assets/70328306/c82e5b60-b5ca-4ad7-accf-6d9844169518)
 
 # create new record with dropdown  fetched category from table
+![image](https://github.com/manojkalyan/CURDAPP/assets/70328306/71a0e877-0a1c-4d76-9ae3-13bf8b08e7f2)
+
 
 ![Screenshot (76)](https://github.com/manojkalyan/CURDAPP/assets/70328306/af28cd10-33ac-49a5-bcce-623e07eac908)
 # list of records with active/inctive and name filter
